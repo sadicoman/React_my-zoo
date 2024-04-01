@@ -8,7 +8,7 @@ const Error = props => {
 		<>
 			<Navbar />
 			<main className="container">
-				<TitreH1 className="text-danger">Erreur {props.type}</TitreH1>
+				<TitreH1 textColor="text-danger">Erreur {props.type}</TitreH1>
 				<p className="lead text-center">{props.children}</p>
 			</main>
 		</>
