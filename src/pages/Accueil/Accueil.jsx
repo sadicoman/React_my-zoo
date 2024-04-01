@@ -1,3 +1,5 @@
+import React, { Component } from "react";
+
 import CardSection from "../../components/common/Card/CardSection/CardSection";
 import Carrousel from "../../components/common/Carrousel/Carrousel";
 import TitreH1 from "../../components/common/Titres/TitreH1";
@@ -38,25 +40,31 @@ const cardData = [
 	},
 ];
 
-const Accueil = () => {
-	return (
-		<>
-			<Navbar />
-			<main className="container mt-5">
-				<TitreH1>MyZoo</TitreH1>
-				<p className="lead mb-5">
-					Bienvenue à MyZoo, l'endroit parfait pour découvrir et apprendre sur une
-					multitude d'animaux incroyables. Venez voir nos dernières expositions et vivez
-					une expérience inoubliable en famille ou entre amis.
-				</p>
-				<Carrousel images={images} />
+class Accueil extends Component {
+	componentDidMount() {
+		document.title = "MyZoo | Accueil";
+	}
 
-				<div className="container mt-5 mb-5">
-					<CardSection cards={cardData} />
-				</div>
-			</main>
-		</>
-	);
-};
+	render() {
+		return (
+			<>
+				<Navbar />
+				<main className="container mt-5">
+					<TitreH1>MyZoo</TitreH1>
+					<p className="lead mb-5">
+						Bienvenue à MyZoo, l'endroit parfait pour découvrir et apprendre sur une
+						multitude d'animaux incroyables. Venez voir nos dernières expositions et vivez
+						une expérience inoubliable en famille ou entre amis.
+					</p>
+					<Carrousel images={images} />
+
+					<div className="container mt-5 mb-5">
+						<CardSection cards={cardData} />
+					</div>
+				</main>
+			</>
+		);
+	}
+}
 
 export default Accueil;
