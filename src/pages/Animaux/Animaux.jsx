@@ -9,31 +9,52 @@ import CardAnimal from "../../components/common/Card/CardAnimal/CardAnimal";
 import SkeletonLoader from "../../components/common/Loader/SkeletonLoader/SkeletonLoader";
 
 const Animaux = () => {
-	const [animaux, setAnimaux] = useState([]); // Initialisation de l'état avec un tableau vide
+	const [animaux, setAnimaux] = useState([]);
 	const [erreur, setErreur] = useState("");
 	const [chargement, setChargement] = useState(false);
+	const [continents, setContinents] = useState([]);
+	const [familles, setFamilles] = useState([]);
+	const [filtreContinent, setFiltreContinent] = useState("");
+	const [filtreFamille, setFiltreFamille] = useState("");
 
 	useEffect(() => {
-		// Effectuer la requête API lors du montage du composant
-		const fetchAnimaux = async () => {
+		const fetchData = async () => {
 			setChargement(true);
 			try {
-				const response = await axios.get(
-					"http://localhost/projets/zoo/api/front/animaux",
-				);
-				setAnimaux(Object.values(response.data)); // Supposons que la réponse contienne un tableau d'animaux
+				const [animauxRes, continentsRes, famillesRes] = await Promise.all([
+					axios.get("http://localhost/projets/zoo/api/front/animaux"),
+					axios.get("http://localhost/projets/zoo/api/front/continents"),
+					axios.get("http://localhost/projets/zoo/api/front/familles"),
+				]);
+				setAnimaux(Object.values(animauxRes.data));
+				setContinents(continentsRes.data);
+				setFamilles(famillesRes.data);
+				console.log(continents);
+				console.log(familles);
 			} catch (error) {
-				console.error("Erreur lors de la récupération des animaux:", error);
+				console.error("Erreur lors de la récupération des données:", error);
 				setErreur(
-					"Impossible de charger les animaux en ce moment. Veuillez réessayer plus tard.",
+					"Impossible de charger les données en ce moment. Veuillez réessayer plus tard.",
 				);
 			} finally {
 				setChargement(false);
 			}
 		};
 
-		fetchAnimaux();
-	}, []); // Le tableau vide indique que cet effet ne dépend d'aucune variable et ne s'exécutera qu'une fois après le premier rendu
+		fetchData();
+	}, []);
+
+	const filtrerAnimaux = () => {
+		return animaux.filter(animal => {
+			return (
+				(filtreContinent === "" ||
+					animal.continents.some(
+						continent => continent.libelleContinent === filtreContinent,
+					)) &&
+				(filtreFamille === "" || animal.famille.libelle === filtreFamille)
+			);
+		});
+	};
 
 	return (
 		<>
@@ -41,6 +62,32 @@ const Animaux = () => {
 			<main className="container mt-5">
 				<TitreH1>Les animaux du parc</TitreH1>
 				<p className="lead text-center">Page listant les animaux du zoo</p>
+				<select
+					value={filtreContinent}
+					onChange={e => setFiltreContinent(e.target.value)}
+					className="form-select mb-3"
+				>
+					<option value="">Sélectionnez un continent</option>
+					{continents.map(continent => (
+						<option key={continent.continent_id} value={continent.continent_libelle}>
+							{continent.continent_libelle}
+						</option>
+					))}
+				</select>
+
+				<select
+					value={filtreFamille}
+					onChange={e => setFiltreFamille(e.target.value)}
+					className="form-select mb-3"
+				>
+					<option value="">Sélectionnez une famille</option>
+					{familles.map(famille => (
+						<option key={famille.famille_id} value={famille.famille_libelle}>
+							{famille.famille_libelle}
+						</option>
+					))}
+				</select>
+
 				{chargement ? (
 					<div className="container mt-5">
 						<div className="row">
@@ -50,7 +97,7 @@ const Animaux = () => {
 				) : (
 					<div className="container mt-5">
 						<div className="row">
-							{animaux.map(animal => (
+							{filtrerAnimaux().map(animal => (
 								<CardAnimal key={animal.id} animal={animal} />
 							))}
 						</div>
