@@ -9,7 +9,7 @@ const Carrousel = ({ images }) => {
 		>
 			<div className="carousel-inner d-flex">
 				{images.map((image, index) => (
-					<div className={`carousel-item ${index === 0 ? "active" : ""}`} key={image}>
+					<div className={`carousel-item ${index === 0 ? "active" : ""}`} key={image.src}>
 						<img
 							src={image.src}
 							className="d-block mx-auto"

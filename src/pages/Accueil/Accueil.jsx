@@ -4,6 +4,7 @@ import CardSection from "../../components/common/Card/CardSection/CardSection";
 import Carrousel from "../../components/common/Carrousel/Carrousel";
 import TitreH1 from "../../components/common/Titres/TitreH1";
 import Navbar from "../../components/layout/Menu/Navbar/Navbar";
+import Footer from "../../components/layout/Footer/Footer";
 
 const images = [
 	{ src: "../../assets/images/chien.png", alt: "Chien", height: "128px" },
@@ -62,6 +63,7 @@ class Accueil extends Component {
 						<CardSection cards={cardData} />
 					</div>
 				</main>
+				<Footer />
 			</>
 		);
 	}

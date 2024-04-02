@@ -1,0 +1,19 @@
+.footer {
+	background: #f1f6f5;
+}
+
+.footer--absolute {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.footer__social {
+	height: 40px;
+	width: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 50%;
+}
