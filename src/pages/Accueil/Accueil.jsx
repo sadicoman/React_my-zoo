@@ -63,7 +63,7 @@ class Accueil extends Component {
 						<CardSection cards={cardData} />
 					</div>
 				</main>
-				<Footer />
+				<Footer CSS="footer--special" />
 			</>
 		);
 	}

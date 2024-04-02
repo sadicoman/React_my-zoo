@@ -117,7 +117,7 @@ const Animaux = () => {
 
 				{erreur && <p className="text-danger">{erreur}</p>}
 			</main>
-			<Footer />
+			<Footer CSS="footer--relative" />
 		</>
 	);
 };

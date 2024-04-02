@@ -4,6 +4,7 @@ import Accueil from "../pages/Accueil/Accueil";
 import App from "../App";
 import Error from "../pages/Error/Error";
 import Animaux from "../pages/Animaux/Animaux";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter(
 	[
@@ -21,7 +22,7 @@ const router = createBrowserRouter(
 				},
 				{
 					path: "/contact",
-					element: <h1>Page contact</h1>,
+					element: <Contact />,
 				},
 				{
 					path: "*",

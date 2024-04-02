@@ -12,7 +12,7 @@ const Error = props => {
 				<TitreH1 textColor="text-danger">Erreur {props.type}</TitreH1>
 				<p className="lead text-center">{props.children}</p>
 			</main>
-			<Footer CSS="footer--absolute" />
+			<Footer CSS="footer--special" />
 		</>
 	);
 };
