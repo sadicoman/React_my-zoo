@@ -1,0 +1,30 @@
+.grid {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 1.5rem;
+}
+.grid .g-col-6 {
+	grid-column: auto/span 6;
+}
+.grid .g-col-5 {
+	grid-column: auto/span 5;
+}
+.grid .g-col-4 {
+	grid-column: auto/span 4;
+}
+.grid .g-col-3 {
+	grid-column: auto/span 3;
+}
+.grid .g-col-2 {
+	grid-column: auto/span 2;
+}
+
+@media (min-width: 768px) {
+	.grid {
+		display: grid;
+		grid-template-rows: 1fr;
+		grid-template-columns: repeat(12, 1fr);
+		gap: 1.5rem;
+	}
+}

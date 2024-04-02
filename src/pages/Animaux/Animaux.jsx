@@ -56,37 +56,48 @@ const Animaux = () => {
 		});
 	};
 
+	const resetFiltres = () => {
+		setFiltreContinent("");
+		setFiltreFamille("");
+	};
+
 	return (
 		<>
 			<Navbar />
 			<main className="container mt-5">
 				<TitreH1>Les animaux du parc</TitreH1>
 				<p className="lead text-center">Page listant les animaux du zoo</p>
-				<select
-					value={filtreContinent}
-					onChange={e => setFiltreContinent(e.target.value)}
-					className="form-select mb-3"
-				>
-					<option value="">Sélectionnez un continent</option>
-					{continents.map(continent => (
-						<option key={continent.continent_id} value={continent.continent_libelle}>
-							{continent.continent_libelle}
-						</option>
-					))}
-				</select>
+				<div className="grid">
+					<select
+						value={filtreContinent}
+						onChange={e => setFiltreContinent(e.target.value)}
+						className="form-select mb-3 g-col-5"
+					>
+						<option value="">Sélectionnez un continent</option>
+						{continents.map(continent => (
+							<option key={continent.continent_id} value={continent.continent_libelle}>
+								{continent.continent_libelle}
+							</option>
+						))}
+					</select>
 
-				<select
-					value={filtreFamille}
-					onChange={e => setFiltreFamille(e.target.value)}
-					className="form-select mb-3"
-				>
-					<option value="">Sélectionnez une famille</option>
-					{familles.map(famille => (
-						<option key={famille.famille_id} value={famille.famille_libelle}>
-							{famille.famille_libelle}
-						</option>
-					))}
-				</select>
+					<select
+						value={filtreFamille}
+						onChange={e => setFiltreFamille(e.target.value)}
+						className="form-select mb-3 g-col-5"
+					>
+						<option value="">Sélectionnez une famille</option>
+						{familles.map(famille => (
+							<option key={famille.famille_id} value={famille.famille_libelle}>
+								{famille.famille_libelle}
+							</option>
+						))}
+					</select>
+
+					<button onClick={resetFiltres} className="btn btn-secondary mb-3 g-col-2">
+						Réinitialiser
+					</button>
+				</div>
 
 				{chargement ? (
 					<div className="container mt-5">
