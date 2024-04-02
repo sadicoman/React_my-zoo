@@ -148,7 +148,7 @@ const Footer = props => {
 };
 
 Footer.propTypes = {
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 	CSS: PropTypes.string,
 };
 

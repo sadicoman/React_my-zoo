@@ -1,7 +1,9 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Accueil from "../pages/Accueil/Accueil";
 import App from "../App";
 import Error from "../pages/Error/Error";
+import Animaux from "../pages/Animaux/Animaux";
 
 const router = createBrowserRouter(
 	[
@@ -12,6 +14,10 @@ const router = createBrowserRouter(
 				{
 					path: "/",
 					element: <Accueil />,
+				},
+				{
+					path: "/animaux",
+					element: <Animaux />,
 				},
 				{
 					path: "/contact",

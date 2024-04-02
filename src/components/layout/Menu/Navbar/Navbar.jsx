@@ -38,6 +38,15 @@ const Navbar = () => {
 						</li>
 						<li className="nav-item">
 							<Link
+								className={`nav-link ${isActive("/animaux") ? "nav-link active" : ""}`}
+								aria-current="page"
+								to="/animaux"
+							>
+								Animaux
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link
 								className={`nav-link ${isActive("/contact") ? "nav-link active" : ""}`}
 								aria-current="page"
 								to="/contact"
